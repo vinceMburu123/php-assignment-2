@@ -1,0 +1,177 @@
+
+<html >
+<head>
+    
+    <title>Form</title>
+    <style>
+        body {
+            
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: burlywood;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: horizontal;
+            height: 80px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #5bee62;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        
+        @media only screen and (max-width:400px){
+
+        }
+        @media only screen and (max-width:500px){
+
+        }
+        @media only screen and (max-width:768px){
+
+        }
+        @media only screen and (max-width:992px){
+
+        }
+        @media only screen and (max-width:1200px){
+
+        }
+    </style>
+</head>
+<body>
+
+    <form id="feedbackForm" method="POST" action="submit_feedback.php">
+        <div class="container">
+            <h2>Feedback Form</h2>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+            <p class="error" id="nameError"></p>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+            <p class="error" id="emailError"></p>
+
+            <label for="feedback">Feedback:</label>
+            <textarea name="feedback" id="feedback" required></textarea>
+           
+
+            <label for="rating">Rating only (1-5):</label>
+            <input type="number" name="rating" id="rating" min="1" max="5" required>
+            <p class="error" id="ratingError"></p>
+          
+
+            <input type="submit" value="Submit Feedback">
+        </div>
+    </form>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('feedbackForm');
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const feedbackvalue = document.getElementById('feedback');
+            const ratingvalue = document.getElementById('rating');
+          
+
+            feedbackInput.addEventListener('input', function() {
+                const feedbackLength = feedbackvalue.value.length;
+                charCount.textContent = `${feedbackLength}/100`;
+            });
+
+            
+            ratingvalue.addEventListener('input', function() {
+                ratingvalue.textContent = ratingvalue.value;
+            });
+
+            
+            email.addEventListener('input', function() {
+                const emailValue = email.value;
+                const emailError = document.getElementById('emailError');
+                if (!emailValue.includes('@') || !emailValue.includes('.')) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                } else {
+                    emailError.textContent = '';
+                }
+            });
+
+           
+            form.addEventListener('submit', function(event) {
+                let valid = true;
+
+                
+                if (name.value <9 === '') {
+                    document.getElementById('nameError').textContent = 'Name is required to be 9 characters.';
+                    valid = false;
+                } else {
+                    document.getElementById('nameError').textContent = '';
+                }
+
+                
+                if (!valid) {
+                    event.preventDefault();
+                } else {
+                    
+                    alert('Thank you for your feedback!');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
