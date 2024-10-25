@@ -120,58 +120,53 @@
     </form>
 
     <script>
-        
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('feedbackForm');
             const name = document.getElementById('name');
             const email = document.getElementById('email');
             const feedbackvalue = document.getElementById('feedback');
             const ratingvalue = document.getElementById('rating');
-          
-
-            feedbackInput.addEventListener('input', function() {
-                const feedbackLength = feedbackvalue.value.length;
-                charCount.textContent = `${feedbackLength}/100`;
+            const nameInvalid = document.getElementById('nameInvalid');
+    
+            // Name validation
+            name.addEventListener('name', function() {
+                if (name.value.length < 9) {
+                    nameInvalid.textContent = 'Name must be at least 9 characters.';
+                } else {
+                    nameInvalid.textContent = '';
+                }
             });
-
-            
-            ratingvalue.addEventListener('input', function() {
-                ratingvalue.textContent = ratingvalue.value;
-            });
-
-            
+    
+           
+    
+            // Email validation
             email.addEventListener('input', function() {
-                const emailValue = email.value;
                 const emailError = document.getElementById('emailError');
-                if (!emailValue.includes('@') || !emailValue.includes('.')) {
+                if (!email.value.includes('@') || !email.value.includes('.')) {
                     emailError.textContent = 'Please enter a valid email address.';
                 } else {
                     emailError.textContent = '';
                 }
             });
-
+    
            
             form.addEventListener('submit', function(event) {
                 let valid = true;
-
-                
-                if (name.value <9 === '') {
-                    document.getElementById('nameError').textContent = 'Name is required to be 9 characters.';
+    
+                if (name.value.length < 9) {
+                    nameError.textContent = 'Name must be at least 9 characters.';
                     valid = false;
-                } else {
-                    document.getElementById('nameError').textContent = '';
                 }
-
-                
+    
                 if (!valid) {
                     event.preventDefault();
                 } else {
-                    
-                    alert('Thank you for your feedback!');
+                    alert('Thank you for your feedback to serve you better!');
                 }
             });
         });
     </script>
+    
 
 </body>
 </html>
